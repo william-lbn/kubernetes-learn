@@ -52,13 +52,13 @@
 
 ​		**Operator = Custom Resource + Custom Controller** 
 
- 				Operator 名词来源于操作员，在 Kubernetes 中自动化完成一系列工作。例如：
+ 		Operator 名词来源于操作员，在 Kubernetes 中自动化完成一系列工作。例如：
  	
- 				  ①按需部署应用
+ 		 1、按需部署应用
  	
- 				 ②获取/还原应用状态的备份
+ 		 2、获取/还原应用状态的备份
  	
- 				 ③更多 Operator 示例可参考 https://operatorhub.io/
+ 		 3、更多 Operator 示例可参考 https://operatorhub.io/
 
 ## 核心概念
 
@@ -187,4 +187,56 @@ K8s GC 在删除一个对象时，任何 ownerReference 是该对象的对象都
 
 ## CR/CRD关系（待补充）
 
+### CRD是什么？
+
+​    CRD就是一个数据库表。举个例子，我们在数据库中创建一个名为Fruit的表，该表包含了许多记录（record），例如apple、banana和orange。这些记录有很多列（column），如“甜度”、“味道”和“重量”，来显示水果的特性。CRD就像一个Fruit表。
+
+![image-20211022151550987](img/image-20211022151550987.png)
+
+CR（Custom Resource，自定义资源）的每个记录（record）都类似于 apple。
+
+![image-20211022151627364](img/image-20211022151627364.png)
+
+创建 CRD（表）之后，我们可以添加或删除 CR（记录）。
+
+​    为什么需要CRD？因为越来越多的用户熟悉了Kubernetes的用法后，希望更广泛地使用它。他们将更多数据输入Kubernetes来使用，这些数据格式互不相同，而且不是Kubernetes原本就有定义的，因此他们在Kubernetes中创建表的种类，并设置自定义的列名或类型，就像在数据库中那样定义表，这就是CRD的由来。
+
+### 如何创建CRD？
+
+如上所述，CRD是一个表，创建表时，我们需要定义表的格式，例如列名和类型，这些元素在CRD文件中以YAML或JSON格式描述。
+
+CR以YAML或JSON格式描述记录（record）的每个值。
+
+![image-20211022153451153](img/image-20211022153451153.png)
+
+
+
+这是CRD内部详细信息。
+
+![image-20211022153536956](img/image-20211022153536956.png)
+
+CRD格式分为三个部分
+
+​     1）常规部分（General part）：与其他Kubernetes资源相同。元数据包括CRD的名称本身（name：“fruit-crd”等）。apiVersion和kind也是必需的。
+
+​     2）表级信息（Table level info）：表名（kind：“Fruit”）、命令行的小写名称（simpler:"fruit"）、复数形式（plural：”fruits“）
+
+​     3）列级信息（Column level info）：列名（"sweetness"）、列类型（"boolean"、"string"、"integer"、"object"）、Nested Object(props: <child object name and columns>)。这些格式遵循OpenAPISpecification v3。
+
+
+
+更多详细信息可以参阅官方文档：
+
+https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition
+
+
+
+
+
 https://mp.weixin.qq.com/s/YNELBbUZ1pUnCanVlVkxOg
+
+https://itnext.io/crd-is-just-a-table-in-kubernetes-13e15367bbe4
+
+https://github.com/onelittlenightmusic/k8sasdb
+
+https://github.com/onelittlenightmusic/k8sasdb/tree/master/test
