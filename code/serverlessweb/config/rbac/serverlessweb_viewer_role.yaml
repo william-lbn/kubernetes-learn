@@ -1,0 +1,20 @@
+# permissions for end users to view serverlesswebs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: serverlessweb-viewer-role
+rules:
+- apiGroups:
+  - serverlessweb.com.pml
+  resources:
+  - serverlesswebs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - serverlessweb.com.pml
+  resources:
+  - serverlesswebs/status
+  verbs:
+  - get

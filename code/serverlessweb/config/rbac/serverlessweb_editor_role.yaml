@@ -1,0 +1,24 @@
+# permissions for end users to edit serverlesswebs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: serverlessweb-editor-role
+rules:
+- apiGroups:
+  - serverlessweb.com.pml
+  resources:
+  - serverlesswebs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - serverlessweb.com.pml
+  resources:
+  - serverlesswebs/status
+  verbs:
+  - get

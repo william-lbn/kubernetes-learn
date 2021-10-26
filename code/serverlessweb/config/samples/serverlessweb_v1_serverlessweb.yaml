@@ -1,0 +1,10 @@
+apiVersion: serverlessweb.com.pml/v1
+kind: ServerlessWeb
+metadata:
+  namespace: dev
+  name: serverlessweb-sample
+spec:
+  image: tomcat:jre8-openjdk
+  port: 30003
+  singlePodQps: 50
+  totalQps: 100

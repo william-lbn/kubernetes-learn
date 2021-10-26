@@ -1,0 +1,16 @@
+domain: com.pml
+layout:
+- go.kubebuilder.io/v3
+projectName: serverlessweb
+repo: serverlessweb
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: com.pml
+  group: serverlessweb
+  kind: ServerlessWeb
+  path: serverlessweb/api/v1
+  version: v1
+version: "3"
